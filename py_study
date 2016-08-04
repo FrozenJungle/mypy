@@ -1,0 +1,412 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+  #━━━━━━神兽出没━━━━━━
+  #　　　┏┓　　　┏┓
+  #　　┏┛┻━━━┛┻┓
+  #　　┃　　　　　　　┃
+  #　　┃　　　━　　　┃
+  #　　┃　┳┛　┗┳　┃
+  #　　┃　　　　　　　┃
+  #　　┃　　　┻　　　┃
+  #　　┃　　　　　　　┃
+  #　　┗━┓　　　┏━┛
+  #　　　　┃　　　┃    神兽保佑,代码无bug
+  #　　　　┃　　　┃
+  #　　　　┃　　　┗━━━┓
+  #　　　　┃　　　　　　　┣┓
+  #　　　　┃　　　　　　　┏┛
+  #　　　　┗┓┓┏━┳┓┏┛
+  #　　　　　┃┫┫　┃┫┫
+  #　　　　　┗┻┛　┗┻┛
+  #━━━━━━━━━━━━━━━━━━━━━
+
+
+
+print("#-------------------------------------字符串和编码---------------------------------------#")
+s1=72
+s2=85
+r=((s2-s1)/s1)*100
+print("中文测试%.1f%%"%r)  #%.1f是保留一位小数的浮点实数，%%是非转义的百分号
+
+print("#--------------------------------------list和tuple---------------------------------------#")
+classmates = ['Michael', 'Bob', 'Tracy']  #list 列表
+print(classmates)
+print(len(classmates))
+print(classmates[-1])
+classmates.append('Adam') #加到末尾
+print(classmates)
+classmates.insert(1, 'Jack')
+print(classmates)
+classmates.pop(1)
+classmates.pop(2)
+print(classmates)
+
+classmates = ('Michael', 'Bob', 'Tracy')  #tuple 元组 初始化后不可变
+L = [
+    ['Apple', 'Google', 'Microsoft'],
+    ['Java', 'Python', 'Ruby', 'PHP'],
+    ['Adam', 'Bart', 'Lisa']
+    ]
+#print(L[0][0])
+#print(L[1][1])
+#print(L[-1][-1])
+print(L)
+L.pop([0][0])
+print(L)
+
+
+print("#--------------------------------------if条件判断-------------------------------------------#")
+#s = input('birth: ')
+#birth = int(s)      #int()函数将s转换为int
+#if birth < 2000:
+#    print('00前')
+#else:
+#    print('00后')
+
+h=1.75
+w=80.5
+bmi=w/(h*h)
+
+if bmi<=18.5:
+    print("过轻")
+elif bmi<=25:
+    print("正常")
+elif bmi<=28:
+    print("过重")
+
+print("#----------------------------------------循环-------------------------------------------#")
+names = ['Michael', 'Bob', 'Tracy']
+for name in names:
+    print(name)
+
+print(list(range(5)))
+
+sum = 0
+n = 99
+while n > 0:
+    sum+=n
+    n=n-2
+print(sum)
+
+ #for x in ...循环就是把每个元素代入变量x，然后执行缩进块的语句。
+L = ['Bart', 'Lisa', 'Adam']
+for name in L:
+    print("Hello %s" % name)
+for x in L:
+    print('Hello',x)
+
+print("#-----------------------------------dict字典和set---------------------------------------#")
+d = {'Michael': 95, 'Bob': 75, 'Tracy': 85} #key-value 一一对应 且key是不可变对象
+print(d['Bob'])
+for value in d.values():
+    print(value)
+
+print(d.get('Ethan',0))
+d.pop('Bob')
+print(d)
+
+a=set([1,2,9,10])  #set是无序无重复的
+print(a)
+s = set([1, 1, 2, 2, 3, 3]) #重复元素被过滤
+print(s)
+
+print(s&a) #交集
+print(s|a) #并集
+
+a='abc'
+print(a)
+print(a.replace('a','A'))    #replace方法改变的是字符串'abc'的内容
+print(a)                     #并不改变变量a
+
+b=(1,2,3)
+bb=(1,[2,3])
+d=[4,5,b,bb]
+print(d)
+
+print("#---------------------------------------函数-----------------------------------------#")
+n1=255
+n2=1000
+n3='str'
+print(hex(n1),hex(n2))
+
+def my_abs(x):      #def定义函数 def 函数名():
+    if x >= 0:
+        return x
+    else:
+        return -x
+
+a=-100
+print(my_abs(a))
+
+import math
+
+def move(x, y, step, angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+
+x, y = move(100, 100, 60, math.pi / 6)
+print(x, y)     #返回多个值，实际上是返回一个tuple
+
+def quadratic(a,b,c):
+    x1=(-b+math.sqrt(b*b-4*a*c))/(2*a)
+    x2=(-b-math.sqrt(b*b-4*a*c))/(2*a)
+    return x1,x2
+
+x,y=quadratic(5,10,1)
+print(x,y)
+
+print("#----------------------------------------递归----------------------------------------#")
+def fact(n):            #尾递归解决栈溢出
+    return fact_iter(n, 1)
+
+def fact_iter(num, product):
+    if num == 1:
+        return product
+    return fact_iter(num - 1, num * product)
+
+print(fact_iter(100,100))
+
+
+
+#def hanoi(n,x,y,z):
+#    if n==1:
+#        print(x,'-->',z)
+#    else:
+#        hanoi(n-1,x,z,y)#将前n-1个盘子从x移动到y上
+#        hanoi(1,x,y,z)#将最底下的最后一个盘子从x移动到z上
+#        hanoi(n-1,y,x,z)#将y上的n-1个盘子移动到z上
+#n=int(input('请输入汉诺塔的层数：'))
+#hanoi(n,'x','y','z')
+
+#print(hanoi(n,'A','B','C'))
+
+print('#--------------------------------------切片-----------------------------------------#')
+L=[0,1,2,3,4,5,6,7,8,9,10,11,12]
+print(L[3:5])  #从下标3开始索引 到5 不包括5
+
+
+print('#--------------------------------------迭代-----------------------------------------#')
+d={'a':1,'b':2,'c':3}
+for value in d.values():
+    print(value)      #随机顺序 我服
+for key in d:
+    print(key)
+
+for i in 'abc':
+    print(i)
+
+from collections import Iterable        #判断是否可迭代
+print(isinstance('abc',Iterable))
+
+for i,value in enumerate(['A','B','C'],1):
+    print(i,value)
+
+print('#--------------------------------列表生成器-----------------------------------------#')
+print([x * x for x in range(1, 11)])
+
+
+print('#----------------------------------生成器-----------------------------------------#')
+g=(x*x for x in range(10))
+print(g)
+for i in g:     #生成器也是可迭代对象
+    print(i)
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print(b)
+        a, b = b, a + b
+        n+=1
+    return 'done'
+
+print(fib(15))
+
+
+print('#---------------------------------类和实例------------------------------------------#')
+class stu(object):
+    pass
+
+bob=stu()
+print(bob)
+
+
+
+print('#----------------------------------模块------------------------------------------#')
+
+' a test module '         #是一个字符串，表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释
+
+__author__ = 'Michael Liao'   #使用__author__变量把作者写进去
+
+import sys      #sys变量指向该模块
+
+def test():     #如果从命令行运行该hello，if判断失败
+    args = sys.argv     #argv参数，用list存储了命令行的所有参数，第一个参数是文件名，例如运行python3 hello.py获得的sys.argv就是['hello.py']
+    if len(args)==1:
+            print('Hello, world!')
+    elif len(args)==2:
+        print('Hello, %s!' % args[1])
+    else:
+        print('Too many arguments!')
+
+if __name__=='__main__':
+    test()      
+
+#作用域，正常的变量和函数名是public的，
+#类似__xx__的是特殊变量，而private变量是_xxx或__xxx，
+#private的变量和函数不应该被直接引用，用法如下：
+def _private_1(name):
+    return 'Hello, %s' % name
+
+def _private_2(name):
+    return 'Hi, %s' % name
+
+def greeting(name):     #public的greeting函数内部逻辑private1和2是隐藏的
+    if len(name) > 3:   #体现了函数的封装性
+        return _private_1(name)
+    else:
+        return _private_2(name)
+
+
+
+#print('#-----------------------------------------------错误处理--------------------------------------------#')
+#try:
+#    print('try...')
+#    r = 10 / 0
+#    print('result:', r)
+#except ZeroDivisionError as e:      #不同的错误意味着可以有多个except语句块
+#    print('except:', e)
+#finally:
+#    print('finally...')
+#print('END')
+
+
+##记录错误
+#import logging      #logging模块记录错误信息，打印完错误之后继续进行
+
+#def foo(s):
+#    return 10 / int(s)
+
+#def bar(s):
+#    return foo(s) * 2
+
+#def main():
+#    try:
+#        bar('0')
+#    except Exception as e:
+#        logging.exception(e)
+
+#main()
+#print('END')
+
+
+##抛出错误
+#class FooError(ValueError):
+#    pass
+
+#def foo(s):
+#    n = int(s)
+#    if n==0:
+#        raise FooError('invalid value: %s' % s)
+#    return 10 / n
+
+#foo('0')
+
+##打印错误并通过raise()向上抛出错误
+#def foo(s):
+#    n = int(s)
+#    if n==0:
+#        raise ValueError('invalid value: %s' % s)
+#    return 10 / n
+
+#def bar():
+#    try:
+#        foo('0')
+#    except ValueError as e:
+#        print('ValueError!')
+#        raise
+
+#bar()
+
+# print('#-----------------------------------装饰器------------------------------------------#')
+# #在代码运行期间动态增加功能：装饰器
+# #下面定义一个打印日志的decorator
+
+# def log(func):
+#     def wrapper(*args, **kw):
+#         print('call %s():' % func.__name__)
+#         return func(*args, **kw)
+#     return wrapper
+
+# @log        #把@log放到now()函数的定义处，相当于执行了语句：now = log(now)
+# def now():
+#     print('2015-3-25')
+
+# now()
+
+# #由于log()是一个decorator，返回一个函数，
+# #所以，原来的now()函数仍然存在，只是现在同名的now变量指向了新的函数，
+# #于是调用now()将执行新函数，即在log()函数中返回的wrapper()函数。
+# #wrapper()函数的参数定义是(*args, **kw)，因此，wrapper()函数可以接受任意参数的调用。
+# #在wrapper()函数内，首先打印日志，再紧接着调用原始函数。
+
+# #print('#----------------------------------urllib模块------------------------------------------#')
+# ##Get：
+# ##request模块抓去URL内容，发送GET请求到指定页面，返回HTTP响应
+# from urllib import request
+
+# #with request.urlopen('https://api.douban.com/v2/book/2129650') as f:
+# #    data = f.read()
+# #    print('Status:', f.status, f.reason)
+# #    for k, v in f.getheaders():
+# #        print('%s: %s' % (k, v))
+# #    print('Data:', data.decode('utf-8'))
+# #    f=open('D:\\textopen.txt','w')
+# #    f.write(data.decode('utf-8'))
+# #    f.close
+
+# #with request.urlopen('http://jwzx.cqupt.edu.cn/showstuPic.php?xh= '+num) as f:
+
+
+# #    data = f.read()
+# #    print('Status:',f.status, f.reason)
+# #    for k, v in f.getheaders():
+# #        print('%s: %s' % (k, v))
+# #    f=open('D:\\jpg.jpg','w')
+# #    f.write(data.decode('utf-8'))
+
+
+print('#----------------------------------高阶函数------------------------------------------#')
+print(abs)      #<built-in function abs>
+print('\n')
+#f=abs          #函数本身也可以赋值给变量
+#abs=10         #abs=10这一句有毒，为了说明函数名本身也是变量，
+#可以给函数名赋值，但这样函数就无效了，print(abs(-80)),报错
+#上面为了说明，函数的参数能接受变量，所以函数可以接受另一个函数作为参数
+#这就是高阶函数
+
+
+def add(x,y,f):
+    return f(x)+f(y)
+
+print(add(-5,-6,abs))
+
+print('#----------------------------------map/reduce------------------------------------------#')
+def f(x):
+    return x*x
+r=map(f,[1,2,3,4,5,6])
+print(list(r))
+
+
+print '#----------------------------------类和实例------------------------------------------#'
+class student(object):
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+
+    def prnt_name(self):
+        print self.name
+
+bob=student('bob',8)
+bob.prnt_name()
